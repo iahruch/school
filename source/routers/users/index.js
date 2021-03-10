@@ -1,21 +1,16 @@
-// Core
 import express from 'express';
 
-// Instruments
-import { get, post } from './route';
+import { get, post } from './router';
 import { getByHash, updateByHash, removeByHash } from './hash';
-import { limiter, validator } from '../../utils';
 
-// Schema
-import { createUser } from '../../schemas';
+const router = express.Router();
 
-export const router = express.Router();
-
-router.get('/', [ limiter(5, 60 * 1000) ], get);
-router.post('/', [ validator(createUser) ], post);
+router.get('/',  get);
+router.post('/', post);
 
 router.get('/:userHash', getByHash);
 router.put('/:userHash', updateByHash);
 router.delete('/:userHash', removeByHash);
 
 export { router as users };
+

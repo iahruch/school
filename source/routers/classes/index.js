@@ -1,21 +1,14 @@
-// Core
 import express from 'express';
-
-// Instruments
-import { get, post } from './route';
+import { get, post } from './router';
 import { getByHash, updateByHash, removeByHash } from './hash';
-import { enroll, expel } from './education';
 
-export const router = express.Router();
+const routers = express.Router();
 
-router.get('/', get);
-router.post('/', post);
+routers.get('/', get);
+routers.post('/', post);
 
-router.get('/:classHash', getByHash);
-router.put('/:classHash', updateByHash);
-router.delete('/:classHash', removeByHash);
+routers.get('/:classHash', getByHash);
+routers.put('/:classHash', updateByHash);
+routers.delete('/:classHash', removeByHash);
 
-router.post('/:classHash/enroll', enroll);
-router.post('/:classHash/expel', expel);
-
-export { router as classes };
+export { routers as classes };
